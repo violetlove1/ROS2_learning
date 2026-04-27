@@ -574,6 +574,8 @@ source ~/ros2_ws/install/setup.bash
 ```
 
 ---
+
+## 5. 整体思路
 ```
 ┌──────────────┐                          ┌──────────────┐
 │   Node A     │                          │   Node B     │
