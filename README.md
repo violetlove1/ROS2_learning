@@ -1,4 +1,4 @@
-## ROS@ Install
+## ROS2 Install
 我想用ROS2 jazzy做一个mujoco franka机械臂的PD控制方法，如何开始下载ROS2并且完成这个项目呢
 
 好，这是个完整的项目。我直接给你一个**从零到能跑起来的完整路线**，分成几个阶段。
