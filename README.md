@@ -3,7 +3,7 @@
 用ROS2 jazzy做一个mujoco franka机械臂的PD控制方法，如何开始下载ROS2并且完成这个项目呢
 
 <p align="center">
-  <img src="robot.jpg" alt="franka_emika_panda" width="85%">
+  <img src="robot.png" alt="franka_emika_panda" width="85%">
 </p>
 ---
 
