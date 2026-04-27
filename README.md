@@ -80,10 +80,14 @@ sudo apt install ros-jazzy-desktop -y
 
 ---
 
-## 4. 安装开发工具
+## 4. 安装开发工具及编译工具
 
 ```bash
 sudo apt install ros-dev-tools -y
+
+sudo apt update
+sudo apt install python3-colcon-common-extensions
+colcon --help
 ```
 
 ---
@@ -570,16 +574,17 @@ source ~/ros2_ws/install/setup.bash
 ```
 
 ---
-
-┌───────────┐                         ┌───────────┐
-│  Node A   │                         │  Node B   │
-│ 控制器    │                         │ 仿真器    │
-│           │                         │           │
-│ publisher │──→ 话题1 /joint_commands →│ subscriber│
-│           │                         │ callback  │
-│           │                         │           │
-│ subscriber│←── 话题2 /joint_states  ←│ publisher │
-│ callback  │                         │           │
-└───────────┘                         └───────────┘
+```
+┌──────────────┐                          ┌──────────────┐
+│   Node A     │                          │   Node B     │
+│  pd_control  │                          │  mujoco_sim  │
+│              │──→ /joint_commands ────→│              │
+│  publisher   │   Float64MultiArray      │  subscriber  │
+│              │                          │   callback   │
+│              │                          │              │
+│  subscriber  │←── /joint_states ────────│  publisher   │
+│   callback   │   sensor_msgs/JointState │              │
+└──────────────┘                          └──────────────┘
+```
 
 # ROS2_learning
