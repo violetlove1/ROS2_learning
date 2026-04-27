@@ -7,7 +7,7 @@
 
 # 整体思路
 
-你这个项目涉及：
+这个项目涉及：
 
 1. **ROS 2 Jazzy** — 通信框架
 2. **MuJoCo** — 物理仿真引擎
@@ -37,7 +37,7 @@
 
 # 阶段一：安装 ROS 2 Jazzy
 
-你现在是 **Ubuntu 24.04**，正好是 Jazzy 的官方支持版本。
+ **Ubuntu 24.04**，正好是ROS2 Jazzy 的官方支持版本。
 
 ## 1. 设置 locale
 
@@ -67,7 +67,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 ```
 
 ---
-
+这地方可能会报IP地址类型错误的信息
 ## 3. 安装 ROS 2 Jazzy Desktop
 
 ```bash
@@ -447,6 +447,7 @@ cd ~/ros2_ws
 ## 2. 编译
 
 ```bash
+
 colcon build --symlink-install
 ```
 
@@ -463,7 +464,7 @@ source install/setup.bash
 ## 4. 运行仿真节点
 
 ```bash
-ros2 run franka_mujoco_control mujoco_sim
+ros2 run franka_mujoco_control mujoco_sim_node
 ```
 
 ---
@@ -472,7 +473,7 @@ ros2 run franka_mujoco_control mujoco_sim
 
 ```bash
 source ~/ros2_ws/install/setup.bash
-ros2 run franka_mujoco_control pd_controller
+ros2 run franka_mujoco_control pd_controller_node
 ```
 
 ---
@@ -570,12 +571,15 @@ source ~/ros2_ws/install/setup.bash
 
 ---
 
-这就是完整流程。如果你愿意，我下一条可以帮你：
-
-1. **生成完整的项目文件结构**
-2. **写一个启动脚本一键运行**
-3. **帮你调试某个具体环节**
-
-你只要告诉我你现在进行到哪一步了。
+┌───────────┐                         ┌───────────┐
+│  Node A   │                         │  Node B   │
+│ 控制器    │                         │ 仿真器    │
+│           │                         │           │
+│ publisher │──→ 话题1 /joint_commands →│ subscriber│
+│           │                         │ callback  │
+│           │                         │           │
+│ subscriber│←── 话题2 /joint_states  ←│ publisher │
+│ callback  │                         │           │
+└───────────┘                         └───────────┘
 
 # ROS2_learning
